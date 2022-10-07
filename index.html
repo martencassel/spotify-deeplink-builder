@@ -46,6 +46,9 @@
           result = GetTrackPlaylistUrl(playlist, track);
           resultElmt = document.getElementById("result")
           resultElmt.value = result
+
+          resultLink = document.getElementById("result_link")
+          resultLink.href = result
         }
     </script>
 </head>
@@ -64,6 +67,9 @@
     <div>
       <input type="text" id="result"></input>
       <button onclick="copyText()">Copy text</button>
+    </div>
+    <div>
+      <a id="result_link" href="">Test Link</a>
     </div>
 
 </body>
