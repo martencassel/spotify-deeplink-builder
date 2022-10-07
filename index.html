@@ -27,18 +27,6 @@
           let track_playlist_link = `https://open.spotify.com/track/${track_id}?context=spotify:playlist:${playlist_id}&si=${playlist_si}`
           return track_playlist_link;
         }
-        function copyText() {
-          var copyText = document.getElementById("result");
-          // Select the text field
-          copyText.select();
-          copyText.setSelectionRange(0, 99999); // For mobile devices
-
-          // Copy the text inside the text field
-          navigator.clipboard.writeText(copyText.value);
-          // Alert the copied text
-          alert("Copied the text: " + copyText.value);
-        }
-    
         function onButtonClick(e) {
         console.log('onButtonClick');
           track = document.getElementById("track").value;
@@ -66,7 +54,6 @@
     </div>
     <div>
       <input type="text" id="result"></input>
-      <button onclick="copyText()">Copy text</button>
     </div>
     <div>
       <a id="result_link" href=""  target="_blank">Test Link</a>
