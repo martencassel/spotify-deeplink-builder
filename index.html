@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style text="text/css">
+      input {
+        width: 800px;
+      }
+    </style>
+    <script type="text/javascript">        
+        function GetTrackPlaylistUrl(playlist_link, track_link) {
+          playlist_link = playlist_link.replace("https://open.spotify.com/playlist/", "")
+          playlist_link_components = playlist_link.split("?")
+          playlist_id = playlist_link_components[0]
+          playlist_si = playlist_link_components[1].split('=')[1]
+          console.log('PLAYLIST_ID: ' + playlist_id)
+          console.log('PLAYLIST_SI: ' + playlist_si)
+          track_link = track_link.replace("https://open.spotify.com/track/", "")
+          track_link_components = track_link.split("?")
+          track_id = track_link_components[0]
+          track_si = track_link_components[1].split('=')[1]
+          console.log('TRACK_ID: ' + track_id)
+          console.log('TRACK_SI: ' + track_si)
+          let track_playlist_link = `https://open.spotify.com/track/${track_id}?context=spotify:playlist:${playlist_id}&si=${playlist_si}`
+          return track_playlist_link;
+        }
+        function copyText() {
+          var copyText = document.getElementById("result");
+          // Select the text field
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); // For mobile devices
+
+          // Copy the text inside the text field
+          navigator.clipboard.writeText(copyText.value);
+          // Alert the copied text
+          alert("Copied the text: " + copyText.value);
+        }
+    
+        function onButtonClick(e) {
+        console.log('onButtonClick');
+          track = document.getElementById("track").value;
+          playlist = document.getElementById("playlist").value;
+          result = GetTrackPlaylistUrl(playlist, track);
+          resultElmt = document.getElementById("result")
+          resultElmt.value = result
+        }
+    </script>
+</head>
+<body>
+    <div style="width: 100%">
+      <div style="width: 300px">
+        <label for="track">Track</label>
+        <input type="text" id="track" value="https://open.spotify.com/track/3e8Cb8WuC3VMBKmNL6rj1Y?si=c374a242c5eb4bbe"   />
+      </div>
+      <div>
+        <label for="playlist">Playlist</label>
+        <input type="text"  id="playlist" value="https://open.spotify.com/playlist/6X2pHYQ2jqVkuu2X75Irou?si=cc6abbef69f14be6"  />
+      </div>    
+      <button id="Generate" onclick="onButtonClick()">Create</button>
+    </div>
+    <div>
+      <input type="text" id="result"></input>
+      <button onclick="copyText()">Copy text</button>
+    </div>
+
+</body>
+</html>
